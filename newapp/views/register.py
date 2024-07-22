@@ -22,7 +22,7 @@ def register(request):
         })
     if password != password_confirm:
         return JsonResponse({
-            'result': 'unpair'
+            'result': 'mismatch'
         })
     if User.objects.filter(username=username).exists():
         return JsonResponse({

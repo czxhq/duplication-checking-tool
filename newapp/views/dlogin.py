@@ -14,7 +14,7 @@ def dlogin(request):
     duser = DUser.objects.get(user=user)
     if duser.is_login:
         return JsonResponse({
-            'result': 'loggined'
+            'result': 'logined'
         })
     login(request, user)
     duser.is_login = True
