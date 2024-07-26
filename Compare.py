@@ -15,6 +15,7 @@ def __Upload(Folder, Mode, userid = 795462167):
     try:
         shutil.rmtree(moss_folder)
     except:
+        print('not ok')
         pass
     Files = []
     for root, dirs, files in os.walk('./'):
@@ -81,5 +82,13 @@ def run(Folder, Mode):
     p.join()
     
 if __name__ == '__main__':
-    #只能用run起一个线程运行Upload函数，不可直接运行Upload
-    run(Folder='./moss_test', Mode='Python')
+    #
+    # 只能用run起一个线程运行Upload函数，不可直接运行Upload
+    #
+    # 针对 {Mode} 类型的语言进行查重，可选 Mode 如下：
+    #     {"c","cc","java","ml","pascal","ada","lisp","scheme",
+    #     "haskell","fortran","ascii","vhdl","verilog","perl",
+    #     "matlab","python","mips","prolog","spice","vb",
+    #     "csharp","modula2","a8086","javascript","plsql"}
+    run(Folder='./moss_test/', Mode='python')
+    print(os.getcwd())
