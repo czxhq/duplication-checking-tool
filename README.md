@@ -39,3 +39,15 @@ resp = {
   'result': # success, exist, mismatch, empty-u(username), empty-p(password), empty-c(password_confirm) 
 }
 ```
+# change_password
+```python
+url = 'http://'+'localhost'+':8000/change_password/'
+json = {
+  'username': 'czx',
+  'password': 'qaz123qaz',
+  'new_pw': 'qaz1234qaz'
+}
+resp = {
+  'result': # success, mismatch, empty
+}
+```
