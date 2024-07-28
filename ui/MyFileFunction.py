@@ -1,6 +1,8 @@
+import json
 import os
 import shutil
 import zipfile
+from datetime import datetime
 
 
 def copy_folder(src, dst):
@@ -41,3 +43,16 @@ def extract_zip(zip_path, extract_to):
 
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(extract_to)
+
+def addPACKAGE(path, username):
+    time = datetime.now()
+    formatted_time = time.strftime('%Y-%m-%d %H:%M:%S')
+    data = {
+        'username': username,
+        'date' : formatted_time,
+        'foldername' : 'codes'
+    }
+    file_path = os.path.join(path, "PACKAGE.json")
+    with open(file_path, 'w') as json_file:
+        json.dump(data, json_file, indent=4)
+    print(f"PACKAGE.json 文件成功创建")

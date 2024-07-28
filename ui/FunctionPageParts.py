@@ -8,7 +8,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QPushButton, QApplication, QLineEdit, \
     QFileDialog
 
-from ui.MyFileFunction import copy_folder, copy_file, extract_zip
+from ui.MyFileFunction import copy_folder, copy_file, extract_zip, addPACKAGE
 from ui.MyWidgets import FileDropEdit, DraggableTreeView, DropTargetTreeView, HtmlWidget
 from ui.React import upload_zip_to_backend, download_zip_from_backend, interact
 
@@ -122,8 +122,9 @@ class SetTargetArea(QWidget):
 
 
 class FunctionPage(QWidget):
-    def __init__(self):
+    def __init__(self, username):
         super().__init__()
+        self.user = username
         self.work_space_dir = QDir.currentPath()
 
         self.function_parts = QSplitter(Qt.Horizontal)
@@ -173,17 +174,22 @@ class FunctionPage(QWidget):
             return
 
         workspace_dir = self.work_space_dir
-        zip_path = os.path.join(workspace_dir, "selected_files.zip")
+        zip_path = os.path.join(workspace_dir, "result.zip")
         with tempfile.TemporaryDirectory() as temp_dir:
-            temp_folder = os.path.join(temp_dir, "files_to_compress")
+            temp_folder = os.path.join(temp_dir, "files_to_check")
             os.mkdir(temp_folder)
+
+            addPACKAGE(temp_folder, self.user)
+
+            temp_folder_code = os.path.join(temp_folder, "codes")
+            os.mkdir(temp_folder_code)
 
             # Copy selected files to the temporary directory
             for file_path in selected_files:
                 if os.path.isdir(file_path):
-                    copy_folder(file_path, temp_folder)
+                    copy_folder(file_path, temp_folder_code)
                 elif os.path.isfile(file_path):
-                    copy_file(file_path, temp_folder)
+                    copy_file(file_path, temp_folder_code)
 
             # Create a zip file from the temporary directory
             shutil.make_archive(zip_path.replace('.zip', ''), 'zip', temp_folder)
@@ -194,9 +200,6 @@ class FunctionPage(QWidget):
 
         result_path = os.path.join(workspace_dir, "result")
         extract_zip(os.path.join(workspace_dir, "Compare.zip"), result_path)
-        zip_path = os.path.join(result_path, "moss_test", "moss_result.zip")
-        result_path = os.path.join(result_path, "new_result")
-        extract_zip(zip_path, result_path)
 
         result_page = HtmlWidget([os.path.join(result_path, "index.html")], self)
         result_page.exec_()

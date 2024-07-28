@@ -7,7 +7,7 @@ from ui.FunctionPageParts import FunctionPage
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    w = FunctionPage()
+    w = FunctionPage("czx")
     w.show()
 
     app.exec_()
