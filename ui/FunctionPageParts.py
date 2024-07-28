@@ -207,9 +207,6 @@ class FunctionPage(QWidget):
     def fileToResult(self, zip_file_path):
         result_path = os.path.join(self.work_space_dir, "result")
         extract_zip(zip_file_path, result_path)
-        zip_path = os.path.join(result_path, "moss_test", "moss_result.zip")
-        result_path = os.path.join(result_path, "new_result")
-        extract_zip(zip_path, result_path)
 
         result_page = HtmlWidget([os.path.join(result_path, "index.html")], self)
         result_page.exec_()
