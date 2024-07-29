@@ -5,6 +5,10 @@ from django.http import JsonResponse
 def getSecurity(request):
     data = request.GET
     username = data.get("username")
+    if not User.objects.filter(username=username).exists():
+        return JsonResponse({
+            'result': 'no-user'
+        })
     user = User.objects.get(username=username)
     duser = DUser.objects.get(user=user)
     if not duser.is_sec:
