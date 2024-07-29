@@ -125,7 +125,7 @@ json = {
 }
 # if no sec
 resp = {
-  'result': 'no'
+  'result': 'no' / 'no-user'
 }
 # if sec
 resp = {
