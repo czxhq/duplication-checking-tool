@@ -100,3 +100,67 @@ resp = {
   'result': # success, mismatch, empty
 }
 ```
+# 设置密保
+
+```python
+url = 'http://'+'localhost'+':8000/setSecurity/'
+json = {
+  'username': 'czx',
+  'que1': 'the name of my mom',
+  'ans1': 'shsss',
+  'que2': 'thassh',
+  'ans2': 'sjsshf'
+}
+resp = {
+  'result': # success, empty, too-long 
+}
+```
+
+# 获取密保
+
+```python
+url = 'http://'+'localhost'+':8000/getSecurity/'
+json = {
+    'username': 'df',
+}
+# if no sec
+resp = {
+  'result': 'no'
+}
+# if sec
+resp = {
+    'result': 'yes',
+    'que1': 'mom',
+    'que2', 'dad'
+}
+```
+
+# 检查密保正确性
+
+```python
+url = 'http://'+'localhost'+':8000/checkSecurity/'
+json = {
+  'username': 'czx',
+  'ans1': 'shsss',
+  'ans2': 'sjsshf'
+}
+resp = {
+  'result': # success, failed 
+}
+```
+
+# 设置密码
+
+```python
+url = 'http://'+'localhost'+':8000/set_password/'
+json = {
+    'username': 'czx',
+    'password': 'czx123czx',
+    'password_confirm': 'czx123czx'
+}
+resp = {
+  'result': # empty-p, empty-c, mismatch, success
+}
+```
+
+
