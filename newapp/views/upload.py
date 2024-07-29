@@ -25,7 +25,7 @@ def upload(request):
             instance.res_path = respath
             instance.save()
             # call function(folder_path)
-            run(folder_path, 'python')
+            run(folder_path, data["Mode"])
             response = FileResponse(open(respath, 'rb'), content_type='application/zip')
             response['Content-Disposition'] = 'attachment; filename="downloaded_files.zip"'
             return response
