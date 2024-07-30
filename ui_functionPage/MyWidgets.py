@@ -218,7 +218,6 @@ class HtmlWidget(QDialog):
 
         # 底栏
         self.bottom_bar_layout = QHBoxLayout()
-        self.bottom_bar_layout.addWidget(self.out_copy_codes)
         self.bottom_bar_layout.addWidget(self.home_button)
 
 
@@ -273,6 +272,9 @@ class HtmlWidget(QDialog):
         self.full_screen_button.setStyleSheet(button_style)
         self.close_button.setStyleSheet(button_style)
         self.out_copy_codes.setStyleSheet(button_style)
+
+    def openLocally(self):
+        self.bottom_bar_layout.addWidget(self.out_copy_codes)
 
 class SelectTypeComboBox(QComboBox):
     def __init__(self):

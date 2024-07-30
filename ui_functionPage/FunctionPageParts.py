@@ -223,11 +223,12 @@ class FunctionPage(QWidget):
 
         result_page = HtmlWidget([os.path.join(result_path, "index.html")])
         result_page.setPath(os.path.join(result_path, "result.json"), zip_path, self.work_space_dir)
+        result_page.openLocally()
         result_page.exec_()
 
     def fileToResult(self, zip_file_path):
         result_path = os.path.join(self.work_space_dir, "result")
         extract_zip(zip_file_path, result_path)
 
-        result_page = HtmlWidget([os.path.join(result_path, "index.html")], self)
+        result_page = HtmlWidget([os.path.join(result_path, "index.html")])
         result_page.exec_()
