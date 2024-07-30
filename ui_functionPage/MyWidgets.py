@@ -196,10 +196,11 @@ class HtmlWidget(QDialog):
         self.out_copy_codes.setToolTip("导出抄袭代码: 重复率大于 30% 认定为抄袭")
 
         # 设置按钮图标
-        self.home_button.setIcon(QIcon(".\\ui_functionPage\\icons\\home.png"))
-        self.full_screen_button.setIcon(QIcon(".\\ui_functionPage\\icons\\full_screen.png"))
-        self.close_button.setIcon(QIcon(".\\ui_functionPage\\icons\\close.png"))
-        self.out_copy_codes.setIcon(QIcon(".\\ui_functionPage\\icons\\download.png"))
+        path = os.path.dirname(_file_)
+        self.home_button.setIcon(QIcon(os.path.join(path,"icons\\home.png")))
+        self.full_screen_button.setIcon(QIcon(os.path.join(path,"icons\\full_screen.png")))
+        self.close_button.setIcon(QIcon(os.path.join(path,"icons\\close.png")))
+        self.out_copy_codes.setIcon(QIcon(os.path.join(path,"icons\\download.png")))
 
         # 按钮功能
         self.full_screen_button.clicked.connect(self.toggleFullScreen)
